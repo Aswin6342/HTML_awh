@@ -1,0 +1,27 @@
+h1{
+    text-align: center;
+    color: rgba(226, 9, 92, 0.397);
+    border: 2px solid black;
+    border-radius: 50px;
+    box-shadow: inset 2px 2px 10px rgba(136, 89, 89, 0.5);
+}
+h3{
+    text-align: center;
+    color: rgb(0, 0, 0);
+}
+body{
+    border: 5px;
+}
+
+div {
+    border: 2px solid black;
+    caret-color: blueviolet;
+    background-color: darkgrey;
+    box-shadow: inset 2px 2px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 50px;
+}
+.second{
+caret-color: blueviolet;
+    background-color: rgb(226, 218, 218);
+    
+}
