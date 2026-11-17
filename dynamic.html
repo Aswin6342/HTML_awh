@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Background</title>
+    <style>
+        button {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Change background</h1>
+        <button onclick="change1()">Change</button>
+    </div>
+
+    <script>
+        var c = ["red", "yellow", "blue", "green"];
+        let i = 0;
+
+        function change1() {
+            document.body.style.backgroundColor = c[i];
+            i++;
+
+            if (i >= c.length) {
+                i = 0;
+            }
+        }
+    </script>
+</body>
+</html>
