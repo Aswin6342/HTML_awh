@@ -18,16 +18,15 @@
             border-radius: 10px;
         }
 
-        input, select {
+        input[type="text"], input[type="password"] {
             width: 100%;
             padding: 8px;
-            margin: 5px 0 10px 0;
+            margin: 5px 0;
             box-sizing: border-box;
         }
 
         span {
             color: red;
-            font-size: 13px;
         }
 
         button {
@@ -36,153 +35,112 @@
             background: blue;
             color: white;
             border: none;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: darkblue;
         }
     </style>
 </head>
 
 <body>
 
-<form name="regForm" onsubmit="return validateForm()">
+<form onsubmit="return validateForm()">
 
     <h2>Registration Form</h2>
 
     Name:
-    <input type="text" id="name" placeholder="Enter name">
-    <span id="nameErr"></span><br>
+    <input type="text" id="name">
+    <span id="nameErr"></span><br><br>
 
     Email:
-    <input type="text" id="email" placeholder="Enter email">
-    <span id="emailErr"></span><br>
+    <input type="text" id="email">
+    <span id="emailErr"></span><br><br>
 
     Password:
-    <input type="password" id="pass" placeholder="Enter password">
-    <span id="passErr"></span><br>
+    <input type="password" id="pass">
+    <span id="passErr"></span><br><br>
 
     Confirm Password:
-    <input type="password" id="cpass" placeholder="Confirm password">
-    <span id="cpassErr"></span><br>
+    <input type="password" id="cpass">
+    <span id="cpassErr"></span><br><br>
 
     Age:
-    <input type="text" id="age" placeholder="Enter age">
-    <span id="ageErr"></span><br>
+    <input type="text" id="age">
+    <span id="ageErr"></span><br><br>
 
-    Gender:
-    <select id="gender">
-        <option value="">Select Gender</option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Other">Other</option>
-    </select>
+    Gender:<br>
+    <input type="radio" name="gender" value="Male"> Male
+    <input type="radio" name="gender" value="Female"> Female
     <span id="genderErr"></span><br><br>
+
+    Hobbies:<br>
+    <input type="checkbox" name="hobby" value="Reading"> Reading
+    <input type="checkbox" name="hobby" value="Music"> Music
+    <input type="checkbox" name="hobby" value="Sports"> Sports
+    <span id="hobbyErr"></span><br><br>
 
     <button type="submit">Register</button>
 
 </form>
 
 <script>
-
 function validateForm() {
 
-    let isValid = true;
-
-    // Clear previous error messages
-    document.getElementById("nameErr").innerHTML = "";
-    document.getElementById("emailErr").innerHTML = "";
-    document.getElementById("passErr").innerHTML = "";
-    document.getElementById("cpassErr").innerHTML = "";
-    document.getElementById("ageErr").innerHTML = "";
-    document.getElementById("genderErr").innerHTML = "";
-
-    // Get input values
-    let name = document.getElementById("name").value.trim();
-    let email = document.getElementById("email").value.trim();
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
     let pass = document.getElementById("pass").value;
     let cpass = document.getElementById("cpass").value;
-    let age = document.getElementById("age").value.trim();
-    let gender = document.getElementById("gender").value;
+    let age = document.getElementById("age").value;
 
-    // Name validation
+    let gender = document.querySelector('input[name="gender"]:checked');
+    let hobby = document.querySelector('input[name="hobby"]:checked');
+
+    let valid = true;
+
+
+
     if (name == "") {
-        document.getElementById("nameErr").innerHTML =
-            "Name is required";
-        isValid = false;
+        document.getElementById("nameErr").innerHTML = "Enter name";
+        valid = false;
     }
-    else if (!/^[A-Za-z ]+$/.test(name)) {
-        document.getElementById("nameErr").innerHTML =
-            "Name should contain only letters";
-        isValid = false;
-    }
-
-    // Email validation
-    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (email == "") {
-        document.getElementById("emailErr").innerHTML =
-            "Email is required";
-        isValid = false;
-    }
-    else if (!emailPattern.test(email)) {
-        document.getElementById("emailErr").innerHTML =
-            "Invalid email format";
-        isValid = false;
+        document.getElementById("emailErr").innerHTML = "Enter email";
+        valid = false;
     }
 
-    // Password validation
     if (pass == "") {
-        document.getElementById("passErr").innerHTML =
-            "Password is required";
-        isValid = false;
-    }
-    else if (pass.length < 6) {
-        document.getElementById("passErr").innerHTML =
-            "Password must be at least 6 characters";
-        isValid = false;
+        document.getElementById("passErr").innerHTML = "Enter password";
+        valid = false;
     }
 
-    // Confirm password validation
     if (cpass == "") {
-        document.getElementById("cpassErr").innerHTML =
-            "Please confirm password";
-        isValid = false;
+        document.getElementById("cpassErr").innerHTML = "Confirm password";
+        valid = false;
     }
     else if (pass != cpass) {
-        document.getElementById("cpassErr").innerHTML =
-            "Passwords do not match";
-        isValid = false;
+        document.getElementById("cpassErr").innerHTML = "Password does not match";
+        valid = false;
     }
 
-    // Age validation
     if (age == "") {
-        document.getElementById("ageErr").innerHTML =
-            "Age is required";
-        isValid = false;
-    }
-    else if (!/^\d+$/.test(age) || Number(age) < 18 || Number(age) > 100) {
-        document.getElementById("ageErr").innerHTML =
-            "Age must be between 18 and 100";
-        isValid = false;
+        document.getElementById("ageErr").innerHTML = "Enter age";
+        valid = false;
     }
 
-    // Gender validation
-    if (gender == "") {
-        document.getElementById("genderErr").innerHTML =
-            "Please select gender";
-        isValid = false;
+    if (gender == null) {
+        document.getElementById("genderErr").innerHTML = "Select gender";
+        valid = false;
     }
 
-    // Final result
-    if (isValid) {
+    if (hobby == null) {
+        document.getElementById("hobbyErr").innerHTML = "Select a hobby";
+        valid = false;
+    }
+
+    if (valid == true) {
         alert("Registration Successful!");
     }
 
-    return isValid;
+    return valid;
 }
-
 </script>
 
 </body>
