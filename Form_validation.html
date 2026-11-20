@@ -1,36 +1,74 @@
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Registration Form</title>
+
     <style>
-        body { font-family: Arial; background: #f2f2f2; }
-        form { width: 350px; margin: 50px auto; background: white; padding: 20px; border-radius: 10px; }
-        input, select { width: 100%; padding: 8px; margin: 5px 0 10px 0; }
-        span { color: red; font-size: 13px; }
-        button { width: 100%; padding: 10px; background: blue; color: white; border: none; }
+        body {
+            font-family: Arial;
+            background: #f2f2f2;
+        }
+
+        form {
+            width: 350px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 10px 0;
+            box-sizing: border-box;
+        }
+
+        span {
+            color: red;
+            font-size: 13px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: darkblue;
+        }
     </style>
 </head>
+
 <body>
 
 <form name="regForm" onsubmit="return validateForm()">
+
     <h2>Registration Form</h2>
 
-    Name: <input type="text" id="name" placeholder="Enter name">
+    Name:
+    <input type="text" id="name" placeholder="Enter name">
     <span id="nameErr"></span><br>
 
-    Email: <input type="text" id="email" placeholder="Enter email">
+    Email:
+    <input type="text" id="email" placeholder="Enter email">
     <span id="emailErr"></span><br>
 
-    Password: <input type="password" id="pass" placeholder="Enter password">
+    Password:
+    <input type="password" id="pass" placeholder="Enter password">
     <span id="passErr"></span><br>
 
-    Confirm Password: <input type="password" id="cpass" placeholder="Confirm password">
+    Confirm Password:
+    <input type="password" id="cpass" placeholder="Confirm password">
     <span id="cpassErr"></span><br>
 
-    Phone: <input type="text" id="phone" placeholder="10 digit mobile">
-    <span id="phoneErr"></span><br>
-
-    Age: <input type="text" id="age" placeholder="Enter age">
+    Age:
+    <input type="text" id="age" placeholder="Enter age">
     <span id="ageErr"></span><br>
 
     Gender:
@@ -40,90 +78,111 @@
         <option value="Female">Female</option>
         <option value="Other">Other</option>
     </select>
-    <span id="genderErr"></span><br>
+    <span id="genderErr"></span><br><br>
 
     <button type="submit">Register</button>
+
 </form>
 
 <script>
+
 function validateForm() {
+
     let isValid = true;
 
+    // Clear previous error messages
     document.getElementById("nameErr").innerHTML = "";
     document.getElementById("emailErr").innerHTML = "";
     document.getElementById("passErr").innerHTML = "";
     document.getElementById("cpassErr").innerHTML = "";
-    document.getElementById("phoneErr").innerHTML = "";
     document.getElementById("ageErr").innerHTML = "";
     document.getElementById("genderErr").innerHTML = "";
 
+    // Get input values
     let name = document.getElementById("name").value.trim();
     let email = document.getElementById("email").value.trim();
     let pass = document.getElementById("pass").value;
     let cpass = document.getElementById("cpass").value;
-    let phone = document.getElementById("phone").value.trim();
     let age = document.getElementById("age").value.trim();
     let gender = document.getElementById("gender").value;
 
+    // Name validation
     if (name == "") {
-        document.getElementById("nameErr").innerHTML = "Name is required";
+        document.getElementById("nameErr").innerHTML =
+            "Name is required";
         isValid = false;
-    } else if (!/^[A-Za-z ]+$/.test(name)) {
-        document.getElementById("nameErr").innerHTML = "Name should contain only letters";
+    }
+    else if (!/^[A-Za-z ]+$/.test(name)) {
+        document.getElementById("nameErr").innerHTML =
+            "Name should contain only letters";
         isValid = false;
     }
 
+    // Email validation
     let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     if (email == "") {
-        document.getElementById("emailErr").innerHTML = "Email is required";
+        document.getElementById("emailErr").innerHTML =
+            "Email is required";
         isValid = false;
-    } else if (!emailPattern.test(email)) {
-        document.getElementById("emailErr").innerHTML = "Invalid email format";
+    }
+    else if (!emailPattern.test(email)) {
+        document.getElementById("emailErr").innerHTML =
+            "Invalid email format";
         isValid = false;
     }
 
+    // Password validation
     if (pass == "") {
-        document.getElementById("passErr").innerHTML = "Password is required";
+        document.getElementById("passErr").innerHTML =
+            "Password is required";
         isValid = false;
-    } else if (pass.length < 6) {
-        document.getElementById("passErr").innerHTML = "Password must be at least 6 characters";
+    }
+    else if (pass.length < 6) {
+        document.getElementById("passErr").innerHTML =
+            "Password must be at least 6 characters";
         isValid = false;
     }
 
+    // Confirm password validation
     if (cpass == "") {
-        document.getElementById("cpassErr").innerHTML = "Please confirm password";
+        document.getElementById("cpassErr").innerHTML =
+            "Please confirm password";
         isValid = false;
-    } else if (pass != cpass) {
-        document.getElementById("cpassErr").innerHTML = "Passwords do not match";
+    }
+    else if (pass != cpass) {
+        document.getElementById("cpassErr").innerHTML =
+            "Passwords do not match";
         isValid = false;
     }
 
-    if (phone == "") {
-        document.getElementById("phoneErr").innerHTML = "Phone is required";
-        isValid = false;
-    } else if (!/^[0-9]{10}$/.test(phone)) {
-        document.getElementById("phoneErr").innerHTML = "Enter 10 digit phone number";
-        isValid = false;
-    }
-
+    // Age validation
     if (age == "") {
-        document.getElementById("ageErr").innerHTML = "Age is required";
+        document.getElementById("ageErr").innerHTML =
+            "Age is required";
         isValid = false;
-    } else if (isNaN(age) || age < 18 || age > 100) {
-        document.getElementById("ageErr").innerHTML = "Age must be between 18 and 100";
+    }
+    else if (!/^\d+$/.test(age) || Number(age) < 18 || Number(age) > 100) {
+        document.getElementById("ageErr").innerHTML =
+            "Age must be between 18 and 100";
         isValid = false;
     }
 
+    // Gender validation
     if (gender == "") {
-        document.getElementById("genderErr").innerHTML = "Please select gender";
+        document.getElementById("genderErr").innerHTML =
+            "Please select gender";
         isValid = false;
     }
 
+    // Final result
     if (isValid) {
         alert("Registration Successful!");
     }
+
     return isValid;
 }
+
 </script>
 
 </body>
