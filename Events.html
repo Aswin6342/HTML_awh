@@ -1,30 +1,45 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Mouse Over Event</title>
+    <title>Mouse Over Event</title>
+    <style>
+        img {
+            width: 200px;
+            height: 200px;
+        }
+
+        div {
+            border: 2px solid black;
+            justify-content: center;
+            width: 200px;
+            margin-left: 700px;
+        }
+        h2{
+            text-align: center;
+        }
+    </style>
 </head>
+
 <body>
-<h2>Move the mouse over the image</h2>
-<div onmouseover="newContent()" onmouseout="changeContent()">
-<img id="myImage" src="C:/Users/user/Pictures/Screenshots/Screenshot 2026-11-10
-201610.png" width="200" height="150">
-<h3 id="myText">This is the Original Image</h3>
-</div>
-<script>
-function newContent()
-{
-document.getElementById("myImage").src =
-"C:/Users/user/Pictures/Screenshots/Screenshot 2026-11-10 201529.png";
-document.getElementById("myText").innerHTML =
-"This is the New Image";
-}
-function changeContent()
-{
-document.getElementById("myImage").src =
-"C:/Users/user/Pictures/Screenshots/Screenshot 2026-11-10 201610.png";
-document.getElementById("myText").innerHTML =
-"This is the Original Image";
-}
-</script>
+    <h2>Move the mouse over the image</h2>
+    <div onmouseover="newContent()" onmouseout="changeContent()">
+        <img id="myImage" src="f1.webp">
+        <h3 id="myText">This is the Original Image</h3>
+    </div>
+    <script>
+        function newContent() {
+            document.getElementById("myImage").src = "f2.jpg";
+            document.getElementById("myText").innerHTML =
+                "This is the New Image";
+        }
+        function changeContent() {
+            document.getElementById("myImage").src =
+                "f1.webp";
+            document.getElementById("myText").innerHTML =
+                "This is the Original Image";
+        }
+    </script>
 </body>
+
 </html>
